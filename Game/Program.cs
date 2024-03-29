@@ -1,3 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-Console.WriteLine("Hello, World!");
+﻿static void Main(string[] args)
+{
+    var eventLoop = new EventLoop();
+    var game = new Game();
+    eventLoop.LeftHandler += game.OnLeft;
+    eventLoop.RightHandler += game.OnRight;
+    eventLoop.Run();
+}
