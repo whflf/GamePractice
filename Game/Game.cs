@@ -4,10 +4,12 @@ namespace Game;
 public class Game(string mapFile)
 {
     public string MapFile { private get; set; } = mapFile;
+    private static string[] mapComponents;
 
     public void PrintMap()
     {
         var map = File.ReadAllText(this.MapFile);
+        mapComponents = map.Split('\n');
 
         Console.Clear();
         Console.Write(map);
@@ -28,12 +30,18 @@ public class Game(string mapFile)
     
     private static void WriteAt(int deltaLeft, int deltaTop)
     {
-        var originalColumn = Console.CursorTop;
-        var originalRow = Console.CursorLeft;
+        var newColumn = Console.CursorTop + deltaTop;
+        var newRow = Console.CursorLeft + deltaLeft - 1;
 
+        if (mapComponents[newColumn][newRow] != ' ')
+        {
+            return;
+        }
+
+        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
         Console.Write(' ');
-        
-        Console.SetCursorPosition(originalRow + deltaLeft, originalColumn + deltaTop); 
+
+        Console.SetCursorPosition(newRow, newColumn);
         Console.Write('@');
     }
 }
