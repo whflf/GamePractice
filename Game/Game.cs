@@ -1,8 +1,20 @@
 
 namespace Game;
 
-public class Game
+public class Game(string mapFile)
 {
+    public string MapFile { private get; set; } = mapFile;
+
+    public void PrintMap()
+    {
+        var map = File.ReadAllText(this.MapFile);
+
+        Console.Clear();
+        Console.Write(map);
+        Console.SetCursorPosition(1, 1);
+        Console.Write('@');
+    }
+
     public void OnLeft(object sender, EventArgs args)
         => Game.WriteAt(-1, 0);
 

@@ -14,4 +14,10 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="map.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
