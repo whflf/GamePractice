@@ -6,5 +6,7 @@ static void Main(string[] args)
     var game = new Game.Game();
     eventLoop.LeftHandler += game.OnLeft;
     eventLoop.RightHandler += game.OnRight;
+    eventLoop.UpHandler += game.OnTop;
+    eventLoop.DownHandler += game.OnDown;
     eventLoop.Run();
 }
