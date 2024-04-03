@@ -1,10 +1,11 @@
-﻿using Game;
+﻿using System.Diagnostics;
+using Game;
 
-static void Main(string[] args)
-{
-    var eventLoop = new EventLoop();
-    var game = new Game.Game();
-    eventLoop.LeftHandler += game.OnLeft;
-    eventLoop.RightHandler += game.OnRight;
-    eventLoop.Run();
-}
+
+var eventLoop = new EventLoop();
+var game = new Game.Game("./map.txt");
+
+game.PrintMap();
+eventLoop.LeftHandler += game.OnLeft;
+eventLoop.RightHandler += game.OnRight;
+eventLoop.Run();
