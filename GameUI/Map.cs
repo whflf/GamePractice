@@ -1,25 +1,29 @@
 
 namespace GameUI;
 
-public class Map(string mapFile)
+public static class Map
 {
-    public string MapFile { private get; set; } = mapFile;
-    public string[] MapComponents { get; private set; } = File.ReadAllLines(mapFile);
-    
-    /*private static void WriteAt(int deltaLeft, int deltaTop)
+    public static string[] MapComponents { get; private set; }
+
+    public static Point characterCoordinates = new Point (1,1);
+
+    public static void GenerateMap(string mapFile)
     {
-        var newColumn = Console.CursorTop + deltaTop;
-        var newRow = Console.CursorLeft + deltaLeft - 1;
+        MapComponents = File.ReadAllLines(mapFile);
+    }
+    
+    public static bool TryMove(int deltaLeft, int deltaTop)
+    {
+        var newY = characterCoordinates.Y + deltaTop;
+        var newX = characterCoordinates.X + deltaLeft ;
 
-        if (mapComponents[newColumn][newRow] != ' ')
+        if (MapComponents[newY][newX] == ' ')
         {
-            return;
+            characterCoordinates.X = newX;
+            characterCoordinates.Y = newY;
+            return true;
         }
-
-        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-        Console.Write(' ');
-
-        Console.SetCursorPosition(newRow, newColumn);
-        Console.Write('@');
-    }*/
+        return false;
+       
+    }
 }
